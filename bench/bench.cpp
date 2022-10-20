@@ -114,7 +114,8 @@ int main(int argc, char *argv[])
 {
     spdlog::set_automatic_registration(false);
     spdlog::default_logger()->set_pattern("[%^%l%$] %v");
-    int iters = 250000;
+    // int iters = 250000;
+    int iters = 1000000;
     size_t threads = 4;
     try
     {
@@ -152,9 +153,12 @@ void bench(int howmany, std::shared_ptr<spdlog::logger> log)
     using std::chrono::high_resolution_clock;
 
     auto start = high_resolution_clock::now();
+    double dou = 10000.0;
     for (auto i = 0; i < howmany; ++i)
     {
-        log->info("Hello logger: msg number {}", i);
+        // log->info("Hello logger: msg number {} {}", i, 100);
+        // log->info("Hello logger, simple messages");
+        log->info("Hello logger, simple messages {} {}", dou, dou);
     }
 
     auto delta = high_resolution_clock::now() - start;
